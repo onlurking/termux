@@ -92,6 +92,10 @@ if ask "[ storage ] setup external storage?" Y; then
     termux-setup-storage
 fi
 
+if ask "[ termux ] hide welcome message?" Y; then
+    touch $HOME/.hushlogin
+fi
+
 if ask "[ finished ] close termux?" Y; then
     pkill termux
 else
