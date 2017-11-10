@@ -69,7 +69,7 @@ if ! [ -x "$(command -v git)" ]; then
 fi
 
 if [ -d "$HOME/.termux" ]; then
-  if ask "[ termux ]\e[m configs found, overwrite?" Y; then
+  if ask "\e[32m[ termux ]\e[m configs found, overwrite?" Y; then
     rm -rf "$HOME/.termux"
     curl -fsLo "$HOME/.termux/colors.properties" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/colors.properties
     curl -fsLo "$HOME/.termux/font.ttf" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/font.ttf
@@ -89,7 +89,7 @@ if [ $zsh ];then
         echo -e "\e[32m[ oh-my-zsh ]\e[m clonning repository"
         git clone git://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh" --depth 1 --quiet > /dev/null
     else
-      if ask "[ oh-my-zsh ]\e[m configs found, overwrite?" Y; then
+      if ask "\e[32m[ oh-my-zsh ]\e[m configs found, overwrite?" Y; then
           rm -rf "$HOME/.oh-my-zsh"
           git clone git://github.com/robbyrussell/oh-my-zsh.git "$HOME/.oh-my-zsh" --depth 1 --quiet > /dev/null
       fi
@@ -98,7 +98,7 @@ if [ $zsh ];then
     curl -fsLo "$HOME/.zshrc" https://cdn.rawgit.com/onlurking/termux/master/.termux/.zshrc
     curl -fsLo "$HOME/.profile" https://cdn.rawgit.com/onlurking/termux/master/.termux/.profile
     if [ ! -d "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" ]; then
-      if ask "[ oh-my-zsh ]\e[m enable syntax highlighting?" Y; then
+      if ask "\e[32m[ oh-my-zsh ]\e[m enable syntax highlighting?" Y; then
           echo -e "\e[32m[ oh-my-zsh ]\e[m downloading plugin"
           git clone git://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" --quiet > /dev/null
     fi
@@ -116,7 +116,7 @@ if [ $elixir ];then
   if [ ! -d "$HOME/.elixir" ]; then
     install_elixir
   else
-    if ask "[ elixir ]\e[m found, overwrite?" Y; then
+    if ask "\e[32m[ elixir ]\e[m found, overwrite?" Y; then
       rm -rf "$HOME/.elixir"
       install_elixir
     fi
