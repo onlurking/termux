@@ -139,7 +139,7 @@ if [ $ruby ];then
     apt-get install -y ruby ruby-dev > /dev/null 2>&1
   fi
   echo -e "\e[32m[ ruby ]\e[m installing pry"
-  gem install pry
+  gem install pry > /dev/null 2>&1
 fi
 
 if [ $tmux ];then
