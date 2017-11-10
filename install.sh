@@ -2,7 +2,7 @@
 
 while [[ $# -gt 0 ]]; do
     case $1 in
-        -e|--elixr)
+        -e|--elixir)
             elixir=true;;
         -n| --nvim)
             nvimrc=true;;
