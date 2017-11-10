@@ -47,7 +47,7 @@ function ask {
 
 if ! [ -x "$(command -v git)" ]; then
   echo "[ git ] not found, installing"
-  apt install -y git -q > /dev/null
+  apt install -y git > /dev/null
 fi
 
 if [ -d "$HOME/.termux" ]; then
@@ -65,7 +65,7 @@ fi
 if [ $zsh ];then
     if ! [ -x "$(command -v zsh)" ]; then
       echo "[ zsh ] not found, installing"
-      apt install -y zsh -q > /dev/null
+      apt install -y zsh > /dev/null
     fi
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
         echo "[ oh-my-zsh ] clonning repository"
