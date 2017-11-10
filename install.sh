@@ -6,7 +6,7 @@ while [[ $# -gt 0 ]]; do
             elixir=true;;
         -p|--python)
             python=true;;
-        -n| --nvim)
+        -n| --nvim| --neovim)
             nvimrc=true;;
         -t| --tmux)
             tmux=true;;
@@ -132,6 +132,22 @@ if [ $python ];then
   fi
   curl -fsLo "$HOME/.pythonrc" https://cdn.rawgit.com/onlurking/termux/master/.termux/.pythonrc
 fi
+
+if [ $nvimrc ];then
+  if ! [ -x "$(command -v nvim)" ]; then
+    if ! [ -x "$(command -v python)" ]; then
+      echo -e "\e[32m[ neovim ]\e[m python not found, installing"
+      apt-get install -y python > /dev/null 2>&1
+    fi
+    echo -e "\e[32m[ neovim ]\e[m not found, installing"
+    apt-get install -y neovim > /dev/null 2>&1
+    pip install neovim
+  fi
+  curl -fsLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/nvim/autoload/plug.vim
+  curl -fsLo "$HOME/.config/nvim/colors/Tomorrow-Night-Eighties.vim" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/nvim/colors/Tomorrow-Night-Eighties.vim
+  curl -fsLo "$HOME/.config/nvim/init.vim" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/nvim/init.vim
+  fi
+
 
 if [ $ruby ];then
   if ! [ -x "$(command -v ruby)" ]; then

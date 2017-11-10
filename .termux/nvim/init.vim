@@ -67,31 +67,7 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'amix/vim-zenroom2'
 
 " Syntax Highlight
-Plug 'mitsuhiko/vim-python-combined'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'vim-jp/vim-cpp'
-Plug 'othree/html5.vim'
-Plug 'JulesWang/css.vim'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'pangloss/vim-javascript'
-Plug 'elzr/vim-json'
-Plug 'elixir-lang/vim-elixir'
-Plug 'cespare/vim-toml'
-Plug 'wavded/vim-stylus'
-Plug 'digitaltoad/vim-pug'
-Plug 'uarun/vim-protobuf'
-Plug 'exu/pgsql.vim'
-Plug 'othree/nginx-contrib-vim'
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'neovimhaskell/haskell-vim'
-Plug 'fatih/vim-go'
-Plug 'ElmCast/elm-vim'
-Plug 'guns/vim-clojure-static'
-Plug 'guns/vim-clojure-highlight'
-Plug 'luochen1990/rainbow'
-Plug 'StanAngeloff/php.vim'
-Plug 'hylang/vim-hy'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
