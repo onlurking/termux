@@ -103,7 +103,7 @@ if [ $zsh ];then
 fi
 
 if [ $elixir ];then
-  if ! [ -x "$(command -v erlang)" ]; then
+  if ! [ -x "$(command -v erl)" ]; then
     echo "[ erlang ] not found, installing"
     apt-get install -y erlang > /dev/null 2>&1
   fi
