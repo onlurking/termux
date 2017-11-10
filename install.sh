@@ -136,7 +136,7 @@ if [ $tmux ];then
     echo "[ tmux ] not found, installing"
     apt-get install -y tmux > /dev/null 2>&1
   fi
-  curl -fsLo "$HOME/.tmux.conf" https://cdn.rawgit.com/onlurking/termux/master/.termux/.tmux.conf
+  curl -fsLo "$HOME/.tmux.conf" https://raw.githubusercontent.com/onlurking/termux/master/.termux/.tmux.conf
 fi
 
 if ask "[ storage ] setup external storage?" Y; then
