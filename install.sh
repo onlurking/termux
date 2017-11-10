@@ -50,8 +50,8 @@ function ask {
 function install_elixir {
   mkdir "$HOME/.elixir" && cd "$HOME/.elixir"
   echo "[ elixir ] downloading"
-  curl -L https://github.com/elixir-lang/elixir/releases/download/v1.5.2/Precompiled.zip > Precompiled.zip > /dev/null 2>&1
-  unzip Precompiled.zip && rm Precompiled.zip && cd bin
+  curl -L https://github.com/elixir-lang/elixir/releases/download/v1.5.2/Precompiled.zip 2>/dev/null > Precompiled.zip
+  unzip -qq  Precompiled.zip 1>/dev/null && rm Precompiled.zip && cd bin 
   echo "[ elixir ] fixing binaries"
   termux-fix-shebang elixir elixirc iex mix
   echo 'export PATH="$PATH:$HOME/.elixir/bin"' >> "$HOME/.profile"
