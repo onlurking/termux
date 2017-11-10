@@ -8,6 +8,8 @@ while [[ $# -gt 0 ]]; do
             python=true;;
         -n| --nvim)
             nvimrc=true;;
+        -t| --tmux)
+            tmux=true;;
         -z| --zsh)
             zsh=true;;
         *) echo "Unknown options:' $1"
@@ -127,6 +129,14 @@ if [ $python ];then
     apt-get install -y python python-dev > /dev/null 2>&1
   fi
   curl -fsLo "$HOME/.pythonrc" https://cdn.rawgit.com/onlurking/termux/master/.termux/.pythonrc
+fi
+
+if [ $tmux ];then
+  if ! [ -x "$(command -v tmux)" ]; then
+    echo "[ tmux ] not found, installing"
+    apt-get install -y tmux > /dev/null 2>&1
+  fi
+  curl -fsLo "$HOME/.tmux.conf" https://cdn.rawgit.com/onlurking/termux/master/.termux/.tmux.conf
 fi
 
 if ask "[ storage ] setup external storage?" Y; then
