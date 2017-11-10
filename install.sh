@@ -4,6 +4,8 @@ while [[ $# -gt 0 ]]; do
     case $1 in
         -e|--elixir)
             elixir=true;;
+        -p|--python)
+            python=true;;
         -n| --nvim)
             nvimrc=true;;
         -z| --zsh)
@@ -93,9 +95,11 @@ if [ $zsh ];then
     curl -fsLo "$HOME/.oh-my-zsh/themes/lambda-mod.zsh-theme" https://cdn.rawgit.com/onlurking/termux/master/.termux/lambda-mod.zsh-theme
     curl -fsLo "$HOME/.zshrc" https://cdn.rawgit.com/onlurking/termux/master/.termux/.zshrc
     curl -fsLo "$HOME/.profile" https://cdn.rawgit.com/onlurking/termux/master/.termux/.profile
-    if ask "[ oh-my-zsh ] enable syntax highlighting?" Y; then
-      echo "[ oh-my-zsh ] downloading plugin"
-      git clone git://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" --quiet > /dev/null
+    if [ ! -d "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" ]; then
+      if ask "[ oh-my-zsh ] enable syntax highlighting?" Y; then
+          echo "[ oh-my-zsh ] downloading plugin"
+          git clone git://github.com/zsh-users/zsh-syntax-highlighting.git "$HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting" --quiet > /dev/null
+    fi
     else
       sed -i '4s/.*/plugins=(git)/' "$HOME/.zshrc"
     fi
@@ -115,6 +119,14 @@ if [ $elixir ];then
       install_elixir
     fi
   fi
+fi
+
+if [ $python ];then
+  if ! [ -x "$(command -v python)" ]; then
+    echo "[ python ] not found, installing"
+    apt-get install -y python python-dev > /dev/null 2>&1
+  fi
+  curl -fsLo "$HOME/.pythonrc" https://cdn.rawgit.com/onlurking/termux/master/.termux/.pythonrc
 fi
 
 if ask "[ storage ] setup external storage?" Y; then
