@@ -88,3 +88,6 @@ let g:neosnippet#snippets_directory='~/.vim/plugged/vim-snippets/snippets'
 
 " Deoplete
 let g:deoplete#enable_at_startup = 1
+
+" Disable python 2
+let g:loaded_python_provider = 1
