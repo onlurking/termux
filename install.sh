@@ -135,12 +135,18 @@ fi
 
 if [ $nvimrc ];then
   if ! [ -x "$(command -v nvim)" ]; then
-    if ! [ -x "$(command -v python)" ]; then
-      echo -e "\e[32m[ neovim ]\e[m python not found, installing"
-      apt-get install -y python > /dev/null 2>&1
-    fi
     echo -e "\e[32m[ neovim ]\e[m not found, installing"
     apt-get install -y neovim > /dev/null 2>&1
+  fi
+  if ask "\e[32m[ termux ]\e[m install python module?" Y; then
+    if ! [ -x "$(command -v clang)" ]; then
+      echo -e "\e[32m[ neovim ]\e[m clang not found, installing"
+      apt-get install -y clang > /dev/null 2>&1
+    fi
+    if ! [ -x "$(command -v python)" ]; then
+      echo -e "\e[32m[ neovim ]\e[m python not found, installing"
+      apt-get install -y python python-dev > /dev/null 2>&1
+    fi
     pip install neovim > /dev/null 2>&1
   fi
   curl -fsLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/nvim/autoload/plug.vim
