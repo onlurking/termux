@@ -141,13 +141,12 @@ if [ $nvimrc ];then
     fi
     echo -e "\e[32m[ neovim ]\e[m not found, installing"
     apt-get install -y neovim > /dev/null 2>&1
-    pip install neovim
+    pip install neovim > /dev/null 2>&1
   fi
   curl -fsLo "$HOME/.config/nvim/autoload/plug.vim" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/nvim/autoload/plug.vim
   curl -fsLo "$HOME/.config/nvim/colors/Tomorrow-Night-Eighties.vim" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/nvim/colors/Tomorrow-Night-Eighties.vim
   curl -fsLo "$HOME/.config/nvim/init.vim" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/nvim/init.vim
   fi
-
 
 if [ $ruby ];then
   if ! [ -x "$(command -v ruby)" ]; then
