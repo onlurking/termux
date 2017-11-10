@@ -34,7 +34,7 @@ function ask {
             default=
         fi
 
-        echo -n "$1 [$prompt] "
+        echo -e -n "$1 [$prompt] "
         read -r reply </dev/tty
 
         if [ -z "$reply" ]; then
