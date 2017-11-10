@@ -10,6 +10,8 @@ while [[ $# -gt 0 ]]; do
             nvimrc=true;;
         -t| --tmux)
             tmux=true;;
+        -r| --ruby)
+            ruby=true;;
         -z| --zsh)
             zsh=true;;
         *) echo -e "Unknown options:' $1"
@@ -129,6 +131,15 @@ if [ $python ];then
     apt-get install -y python python-dev > /dev/null 2>&1
   fi
   curl -fsLo "$HOME/.pythonrc" https://cdn.rawgit.com/onlurking/termux/master/.termux/.pythonrc
+fi
+
+if [ $ruby ];then
+  if ! [ -x "$(command -v ruby)" ]; then
+    echo -e "\e[32m[ ruby ]\e[m not found, installing"
+    apt-get install -y ruby ruby-dev > /dev/null 2>&1
+  fi
+  echo -e "\e[32m[ ruby ]\e[m installing pry"
+  gem install pry
 fi
 
 if [ $tmux ];then
