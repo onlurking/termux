@@ -54,10 +54,9 @@ if [ -d "$HOME/.termux" ]; then
     rm -rf $HOME/.termux
     curl -fsLo $HOME/.termux/colors.properties --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/colors.properties
     curl -fsLo $HOME/.termux/font.ttf --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/font.ttf
-  else
-    return 1
   fi
 else
+  echo "[ termux ] downloading configs"
   curl -fsLo $HOME/.termux/colors.properties --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/colors.properties
   curl -fsLo $HOME/.termux/font.ttf --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/font.ttf
 fi
@@ -67,19 +66,19 @@ if [ $zsh ];then
       apt install -y zsh
     fi
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
+        echo "[ oh-my-zsh ] clonning repository"
         git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh --depth 1 --quiet > /dev/null
     else
       if ask "[ oh-my-zsh ] configs found, overwrite?" Y; then
           rm -rf $HOME/.oh-my-zsh
           git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh --depth 1 --quiet > /dev/null
-      else
-          return 1
       fi
     fi
     curl -fsLo $HOME/.oh-my-zsh/themes/lambda-mod.zsh-theme https://cdn.rawgit.com/onlurking/termux/master/.termux/lambda-mod.zsh-theme
     curl -fsLo $HOME/.zshrc https://cdn.rawgit.com/onlurking/termux/master/.termux/.zshrc
     curl -fsLo $HOME/.profile https://cdn.rawgit.com/onlurking/termux/master/.termux/.profile
     if ask "[ oh-my-zsh ] enable syntax highlighting?" Y; then
+      echo "[ oh-my-zsh ] downloading plugin"
       git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting --quiet > /dev/null
     else
       sed -i '4s/.*/plugins=(git)/' $HOME/.zshrc
