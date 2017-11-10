@@ -139,15 +139,15 @@ if [ $tmux ];then
   curl -fsLo "$HOME/.tmux.conf" https://raw.githubusercontent.com/onlurking/termux/master/.termux/.tmux.conf
 fi
 
-if ask "[ storage ]\e[m setup external storage?" Y; then
+if ask "\e[32m[ storage ]\e[m setup external storage?" Y; then
     termux-setup-storage
 fi
 
-if ask "[ termux ]\e[m hide welcome message?" Y; then
+if ask "\e[32m[ termux ]\e[m hide welcome message?" Y; then
     touch "$HOME/.hushlogin"
 fi
 
-if ask "[ finished ]\e[m close termux to apply settings?" Y; then
+if ask "\e[32m[ finished ]\e[m close termux to apply settings?" Y; then
     pkill termux
 else
     echo -e "\e[32m[ warning ]\e[m please restart termux to apply settings"
