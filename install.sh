@@ -49,7 +49,7 @@ clear
 
 if ! [ -x "$(command -v git)" ]; then
   echo "[ git ] not found, installing"
-  apt install -y git > /dev/null
+  apt-get install -y git > /dev/null 2>&1
 fi
 
 if [ -d "$HOME/.termux" ]; then
@@ -67,7 +67,7 @@ fi
 if [ $zsh ];then
     if ! [ -x "$(command -v zsh)" ]; then
       echo "[ zsh ] not found, installing"
-      apt install -y zsh > /dev/null
+      apt-get install -y zsh > /dev/null 2>&1
     fi
     if [ ! -d "$HOME/.oh-my-zsh" ]; then
         echo "[ oh-my-zsh ] clonning repository"
