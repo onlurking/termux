@@ -1,7 +1,5 @@
 #!/data/data/com.termux/files/usr/bin/bash
 
-function exists { hash "$1" 2>/dev/null; }
-
 while [[ $# -gt 0 ]]; do
     case $1 in
         -t|--tmux)
@@ -47,12 +45,12 @@ function ask {
     done
 }
 
-if ! [ exists git ];then
+if ! [ -x "$(command -v git)" ]; then
   apt install -y git
 fi
 
 if [ -d "$HOME/.termux" ]; then
-  if ask "Termux configs exists already, do you want to overwrite?" Y; then
+  if ask "[ termux ] configs found, overwrite?" Y; then
     rm -rf $HOME/.termux
     curl -fsLo $HOME/.termux/colors.properties --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/colors.properties
     curl -fsLo $HOME/.termux/font.ttf --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/font.ttf
@@ -65,15 +63,15 @@ else
 fi
 
 if [ $zsh ];then
-    if ! [ exists zsh ]; then
+    if ! [ -x "$(command -v zsh)" ]; then
       apt install -y zsh
     fi
-    if [ ! -d "$HOME/.oh-my-zsh" ]; then # check if directory exists
-        git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh --depth 1
+    if [ ! -d "$HOME/.oh-my-zsh" ]; then
+        git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh --depth 1 --quiet > /dev/null
     else
-      if ask "oh-my-zsh is already installed, do you want to overwrite?" Y; then
+      if ask "[ oh-my-zsh ] configs found, overwrite?" Y; then
           rm -rf $HOME/.oh-my-zsh
-          git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh --depth 1
+          git clone git://github.com/robbyrussell/oh-my-zsh.git $HOME/.oh-my-zsh --depth 1 --quiet > /dev/null
       else
           return 1
       fi
@@ -81,20 +79,22 @@ if [ $zsh ];then
     curl -fsLo $HOME/.oh-my-zsh/themes/lambda-mod.zsh-theme https://cdn.rawgit.com/onlurking/termux/master/.termux/lambda-mod.zsh-theme
     curl -fsLo $HOME/.zshrc https://cdn.rawgit.com/onlurking/termux/master/.termux/.zshrc
     curl -fsLo $HOME/.profile https://cdn.rawgit.com/onlurking/termux/master/.termux/.profile
-    if ask "Do you want syntax highlighting on zsh?" Y; then
-      git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting
+    if ask "[ oh-my-zsh ] enable syntax highlighting?" Y; then
+      git clone git://github.com/zsh-users/zsh-syntax-highlighting.git $HOME/.oh-my-zsh/plugins/zsh-syntax-highlighting --quiet > /dev/null
+    else
+      sed -i '4s/.*/plugins=(git)/' $HOME/.zshrc
     fi
     chsh -s zsh
 fi
 
-if ask "Do you want to close Termux to apply the settings?" Y; then
-    pkill termux
-else
-    echo "The settings will only be applied the next time you open Termux."
+if ask "[ storage ] setup external storage?" Y; then
+    termux-setup-storage
 fi
 
-if ask "Do you want setup external storage?" Y; then
-    termux-setup-storage
+if ask "[ finished ] close termux?" Y; then
+    pkill termux
+else
+    echo "[ warning ] please restart termux to apply settings"
 fi
 
 exit
