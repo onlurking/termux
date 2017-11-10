@@ -45,6 +45,8 @@ function ask {
     done
 }
 
+clear
+
 if ! [ -x "$(command -v git)" ]; then
   echo "[ git ] not found, installing"
   apt install -y git > /dev/null
