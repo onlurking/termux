@@ -48,14 +48,13 @@ function ask {
 function install_elixir {
   mkdir "$HOME/.elixir" && cd "$HOME/.elixir"
   echo "[ elixir ] downloading"
-  curl -L https://github.com/elixir-lang/elixir/releases/download/v1.5.2/Precompiled.zip > Precompiled.zip
+  curl -L https://github.com/elixir-lang/elixir/releases/download/v1.5.2/Precompiled.zip > Precompiled.zip > /dev/null 2>&1
   unzip Precompiled.zip && rm Precompiled.zip && cd bin
   echo "[ elixir ] fixing binaries"
   termux-fix-shebang elixir elixirc iex mix
   echo 'export PATH="$PATH:$HOME/.elixir/bin"' >> "$HOME/.profile"
   cd "$HOME"
-  source "$HOME/.profile"
-  echo "[ elixir ] finished"
+  echo "[ elixir ] restart termux"
 }
 
 clear
@@ -126,7 +125,7 @@ if ask "[ termux ] hide welcome message?" Y; then
     touch "$HOME/.hushlogin"
 fi
 
-if ask "[ finished ] close termux?" Y; then
+if ask "[ finished ] close termux to apply settings?" Y; then
     pkill termux
 else
     echo "[ warning ] please restart termux to apply settings"
