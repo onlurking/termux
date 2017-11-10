@@ -108,15 +108,13 @@ if [ $elixir ];then
     echo "[ erlang ] not found, installing"
     apt-get install -y erlang > /dev/null 2>&1
   fi
-  
-fi
-
-if [ ! -d "$HOME/.elixir" ]; then
-  install_elixir
-else
-  if ask "[ elixir ] found, overwrite?" Y; then
-    rm -rf "$HOME/.elixir"
+  if [ ! -d "$HOME/.elixir" ]; then
     install_elixir
+  else
+    if ask "[ elixir ] found, overwrite?" Y; then
+      rm -rf "$HOME/.elixir"
+      install_elixir
+    fi
   fi
 fi
 
