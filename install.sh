@@ -53,15 +53,12 @@ function ask {
 
 clear
 
-echo "
-  ▓▓▓▓▓▓▓▓▓▓▓▓
- ░▓   about  ▓ custom termux config files
- ░▓  author  ▓ onlurking <diogofelix@acm.org>
- ░▓    code  ▓ https://git.io/vHIrd
- ░▓▓▓▓▓▓▓▓▓▓▓▓
- ░░░░░░░░░░░░
-
-"
+echo -e "  ▓▓▓▓▓▓▓▓▓▓▓▓"
+echo -e " ░▓    about ▓ custom termux config files"
+echo -e " ░▓   author ▓ onlurking <diogofelix@acm.org>"
+echo -e " ░▓     code ▓ https://git.io/vHIrd"
+echo -e " ░▓▓▓▓▓▓▓▓▓▓▓▓"
+echo -e " ░░░░░░░░░░░░\n"
 
 function install_elixir {
   mkdir "$HOME/.elixir" && cd "$HOME/.elixir"
@@ -143,6 +140,23 @@ if [ $python ];then
   curl -fsLo "$HOME/.pythonrc" https://cdn.rawgit.com/onlurking/termux/master/.termux/.pythonrc
 fi
 
+if [ $ruby ];then
+  if ! [ -x "$(command -v ruby)" ]; then
+    echo -e "\e[32m[ ruby ]\e[m not found, installing"
+    apt-get install -y ruby ruby-dev > /dev/null 2>&1
+  fi
+  echo -e "\e[32m[ ruby ]\e[m installing pry"
+  gem install pry > /dev/null 2>&1
+fi
+
+if [ $tmux ];then
+  if ! [ -x "$(command -v tmux)" ]; then
+    echo -e "\e[32m[ tmux ]\e[m not found, installing"
+    apt-get install -y tmux > /dev/null 2>&1
+  fi
+  curl -fsLo "$HOME/.tmux.conf" https://raw.githubusercontent.com/onlurking/termux/master/.termux/.tmux.conf
+fi
+
 if [ $nvimrc ];then
   if ! [ -x "$(command -v nvim)" ]; then
     echo -e "\e[32m[ neovim ]\e[m not found, installing"
@@ -175,22 +189,6 @@ if [ $nvimrc ];then
   curl -fsLo "$HOME/.config/nvim/init.vim" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/nvim/init.vim
 fi
 
-if [ $ruby ];then
-  if ! [ -x "$(command -v ruby)" ]; then
-    echo -e "\e[32m[ ruby ]\e[m not found, installing"
-    apt-get install -y ruby ruby-dev > /dev/null 2>&1
-  fi
-  echo -e "\e[32m[ ruby ]\e[m installing pry"
-  gem install pry > /dev/null 2>&1
-fi
-
-if [ $tmux ];then
-  if ! [ -x "$(command -v tmux)" ]; then
-    echo -e "\e[32m[ tmux ]\e[m not found, installing"
-    apt-get install -y tmux > /dev/null 2>&1
-  fi
-  curl -fsLo "$HOME/.tmux.conf" https://raw.githubusercontent.com/onlurking/termux/master/.termux/.tmux.conf
-fi
 
 if ask "\e[32m[ storage ]\e[m setup external storage?" Y; then
     termux-setup-storage
