@@ -60,6 +60,7 @@ echo $(cat <<-END
  ░▓    code  ▓ https://git.io/vHIrd
  ░▓▓▓▓▓▓▓▓▓▓▓▓
  ░░░░░░░░░░░░
+
 END
 )
 
