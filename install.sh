@@ -53,7 +53,7 @@ function ask {
 
 clear
 
-echo $(cat <<-END
+echo "
   ▓▓▓▓▓▓▓▓▓▓▓▓
  ░▓   about  ▓ custom termux config files
  ░▓  author  ▓ onlurking <diogofelix@acm.org>
@@ -61,8 +61,7 @@ echo $(cat <<-END
  ░▓▓▓▓▓▓▓▓▓▓▓▓
  ░░░░░░░░░░░░
 
-END
-)
+"
 
 function install_elixir {
   mkdir "$HOME/.elixir" && cd "$HOME/.elixir"
