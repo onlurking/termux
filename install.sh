@@ -51,6 +51,18 @@ function ask {
     done
 }
 
+clear
+
+echo $(cat <<-END
+  ▓▓▓▓▓▓▓▓▓▓▓▓
+ ░▓   about  ▓ custom termux config files
+ ░▓  author  ▓ onlurking <diogofelix@acm.org>
+ ░▓    code  ▓ https://git.io/vHIrd
+ ░▓▓▓▓▓▓▓▓▓▓▓▓
+ ░░░░░░░░░░░░
+END
+)
+
 function install_elixir {
   mkdir "$HOME/.elixir" && cd "$HOME/.elixir"
   echo -e "\e[32m[ elixir ]\e[m downloading"
@@ -62,8 +74,6 @@ function install_elixir {
   cd "$HOME"
   echo -e "\e[32m[ elixir ]\e[m restart termux"
 }
-
-clear
 
 if ! [ -x "$(command -v git)" ]; then
   echo -e "\e[32m[ git ]\e[m not found, installing"
