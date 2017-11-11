@@ -53,7 +53,7 @@ function ask {
 
 clear
 
-echo -e "  ▓▓▓▓▓▓▓▓▓▓▓▓"
+echo -e "\n  ▓▓▓▓▓▓▓▓▓▓▓▓"
 echo -e " ░▓    about ▓ custom termux config files"
 echo -e " ░▓   author ▓ onlurking <diogofelix@acm.org>"
 echo -e " ░▓     code ▓ https://git.io/vHIrd"
@@ -61,14 +61,14 @@ echo -e " ░▓▓▓▓▓▓▓▓▓▓▓▓"
 echo -e " ░░░░░░░░░░░░\n"
 
 function install_elixir {
-  mkdir "$HOME/.elixir" && cd "$HOME/.elixir"
+  mkdir "$HOME/.elixir" && cd "$HOME/.elixir" || exit
   echo -e "\e[32m[ elixir ]\e[m downloading"
   curl -L https://github.com/elixir-lang/elixir/releases/download/v1.5.2/Precompiled.zip 2>/dev/null > Precompiled.zip
-  unzip -qq  Precompiled.zip 1>/dev/null && rm Precompiled.zip && cd bin 
+  unzip -qq  Precompiled.zip 1>/dev/null && rm Precompiled.zip && cd bin || exit
   echo -e "\e[32m[ elixir ]\e[m fixing binaries"
   termux-fix-shebang elixir elixirc iex mix
   echo 'export PATH="$PATH:$HOME/.elixir/bin"' >> "$HOME/.profile"
-  cd "$HOME"
+  cd "$HOME" || exit
   echo -e "\e[32m[ elixir ]\e[m restart termux"
 }
 
