@@ -143,18 +143,28 @@ if [ $python ];then
 fi
 
 if [ $postgres ];then
-  if ! [ -x "$(command -v psql)" ]; then
+  if ! [ -x "$(command -v pg_ctl)" ]; then
     echo -e "\e[32m[ postgres ]\e[m not found, installing"
-    apt-get install -y postgres postgres-dev > /dev/null 2>&1
+    apt-get install -y postgresql postgresql-dev > /dev/null 2>&1
+
+    echo -e "\e[32m[ postgres ]\e[m creating configs"
+    initdb ~/.pg > /dev/null 2>&1
+    pg_ctl -D ~/.pg start > /dev/null 2>&1
+
+    echo 'alias pgstart="pg_ctl -D ~/.pg start" > /dev/null 2>&1' >> "$HOME/.profile"
+    echo -e "\e[32m[ postgres ]\e[m type pgstart to start postgresql"
 
     if ask "\e[32m[ postgres ]\e[m install pgcli? (optional)" Y; then
       if ! [ -x "$(command -v python)" ]; then
         echo -e "\e[32m[ postgres ]\e[m python not found, installing"
         apt-get install -y python python-dev > /dev/null 2>&1
       fi
-      pip install pgcli
+      pip install pgcli > /dev/null 2>&1
+      echo -e "\e[32m[ pgcli ]\e[m creating configs"
+      createdb $(whoami)
     fi
 
+    
   fi
 fi
 
