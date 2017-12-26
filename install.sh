@@ -176,7 +176,7 @@ if [ $nvimrc ];then
   if ask "\e[32m[ neovim ]\e[m install ruby module? (optional)" Y; then
     if ! [ -x "$(command -v clang)" ]; then
       echo -e "\e[32m[ neovim ]\e[m clang not found, installing"
-      apt-get install -y clang > /dev/null 2>&1
+      apt-get install -y clang make > /dev/null 2>&1
     fi
     if ! [ -x "$(command -v ruby)" ]; then
       echo -e "\e[32m[ neovim ]\e[m ruby not found, installing"
@@ -188,7 +188,6 @@ if [ $nvimrc ];then
   curl -fsLo "$HOME/.config/nvim/colors/Tomorrow-Night-Eighties.vim" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/nvim/colors/Tomorrow-Night-Eighties.vim
   curl -fsLo "$HOME/.config/nvim/init.vim" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/nvim/init.vim
 fi
-
 
 if ask "\e[32m[ storage ]\e[m setup external storage?" Y; then
     termux-setup-storage
