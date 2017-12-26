@@ -12,6 +12,8 @@ while [[ $# -gt 0 ]]; do
             tmux=true;;
         -r| --ruby)
             ruby=true;;
+        -pg| --postgres)
+            postgres=true;;
         -z| --zsh)
             zsh=true;;
         *) echo -e "Unknown options:' $1"
@@ -138,6 +140,22 @@ if [ $python ];then
     apt-get install -y python python-dev > /dev/null 2>&1
   fi
   curl -fsLo "$HOME/.pythonrc" https://cdn.rawgit.com/onlurking/termux/master/.termux/.pythonrc
+fi
+
+if [ $postgres ];then
+  if ! [ -x "$(command -v psql)" ]; then
+    echo -e "\e[32m[ postgres ]\e[m not found, installing"
+    apt-get install -y postgres postgres-dev > /dev/null 2>&1
+
+    if ask "\e[32m[ postgres ]\e[m install pgcli? (optional)" Y; then
+      if ! [ -x "$(command -v python)" ]; then
+        echo -e "\e[32m[ postgres ]\e[m python not found, installing"
+        apt-get install -y python python-dev > /dev/null 2>&1
+      fi
+      pip install pgcli
+    fi
+
+  fi
 fi
 
 if [ $ruby ];then
