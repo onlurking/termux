@@ -14,7 +14,7 @@ apt update && apt -y upgrade && apt install -y curl
 # Installation
 Just paste the following code into Termux and adjust the parameters to customize what the script will install:
 ```bash
-curl -fsSL https://git.io/vHIKx | bash -s -- --zsh --python --neovim
+curl -fsSL https://git.io/termux | bash -s -- --zsh --python --neovim
 ```
 
 # Script parameters
@@ -28,7 +28,7 @@ curl -fsSL https://git.io/vHIKx | bash -s -- --zsh --python --neovim
 **-e** or **--elixir** setup a erlang, and elixir installation<br>
 
 # Security
-`https://git.io/vHIKx` is a short url which resolves to <br>`https://raw.githubusercontent.com/onlurking/termux/master/install.sh`
+`https://git.io/termux` is a short url which resolves to <br>`https://raw.githubusercontent.com/onlurking/termux/master/termux.sh`
 
 Piping commands from internet to shell is considered bad practice, <br>and there is lot of discussion on the internet: 
 - [Hacker News Discussion](https://news.ycombinator.com/item?id=12766049)
