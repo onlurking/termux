@@ -51,8 +51,6 @@ if executable('python')
   Plug 'zchee/deoplete-jedi'
 endif
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './intall --all' }
-
 " Snippets
 Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'
 Plug 'honza/vim-snippets'
