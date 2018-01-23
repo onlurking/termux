@@ -58,7 +58,7 @@ clear
 echo -e "\n  ▓▓▓▓▓▓▓▓▓▓▓▓"
 echo -e " ░▓    about ▓ custom termux config files"
 echo -e " ░▓   author ▓ onlurking <diogofelix@acm.org>"
-echo -e " ░▓     code ▓ https://git.io/vHIrd"
+echo -e " ░▓     code ▓ https://git.io/termux"
 echo -e " ░▓▓▓▓▓▓▓▓▓▓▓▓"
 echo -e " ░░░░░░░░░░░░\n"
 
