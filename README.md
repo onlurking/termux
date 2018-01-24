@@ -1,8 +1,8 @@
 # Termux Dotfiles
 
-Screenshot |  Installation
+Installation | Screenshot
 :-------------------------:|:-------------------------:
-!<img src="https://my.mixtape.moe/qncbxe.png" width="70%" height="70%" /> |  <img src="https://my.mixtape.moe/nahhce.png" width="70%" height="70%" />
+<img src="https://i.imgur.com/VDDEXh1.png" width="70%" height="70%" /> | <img src="https://i.imgur.com/5thIWFf.png" width="70%" height="70%" />
 
 
 # Requirements
