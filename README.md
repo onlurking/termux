@@ -21,11 +21,11 @@ curl -fsSL https://git.io/termux | bash -s -- --zsh --python --neovim
 
 **-pg** or **--postgres** setup a postgres installation (optional **pgcli** install)<br>
 **-p** or **--python** setup a python installation<br>
-**-r** or **--ruby** setup a ruby installation<br>
+**-r** or **--ruby** setup a ruby installation (includes pry)<br>
 **-js** or **--nodejs** setups nodejs (optional yarn install)<br>
 **-t** or **--tmux** setups tmux<br>
 **-n** or **--neovim** setups neovim<br>
-**-z** or **--zsh** setups zsh<br>
+**-z** or **--zsh** setups zsh (optional syntax-highlight and auto-sugestions)<br>
 **-e** or **--elixir** setup a erlang, and elixir installation<br>
 
 # Security
