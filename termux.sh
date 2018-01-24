@@ -8,6 +8,8 @@ while [[ $# -gt 0 ]]; do
             python=true;;
         -n| --nvim| --neovim)
             nvimrc=true;;
+        -js|--nodejs)
+            nodejs=true;;
         -t| --tmux)
             tmux=true;;
         -r| --ruby)
@@ -79,6 +81,11 @@ if ! [ -x "$(command -v git)" ]; then
   apt-get install -y git > /dev/null 2>&1
 fi
 
+if [ ! -d "$HOME/.local/bin" ]; then
+  mkdir -p $HOME/.local/bin
+  echo 'export PATH=$PATH:$HOME/.local/bin' >> "$HOME/.profile"
+fi
+
 if [ -d "$HOME/.termux" ]; then
   if ask "\e[32m[ termux ]\e[m configs found, overwrite?" Y; then
     rm -rf "$HOME/.termux"
@@ -116,6 +123,14 @@ if [ $zsh ];then
     else
       sed -i '4s/.*/plugins=(git)/' "$HOME/.zshrc"
     fi
+
+    if [ ! -d "$HOME/.oh-my-zsh/plugins/zsh-autosuggestions" ]; then
+      if ask "\e[32m[ oh-my-zsh ]\e[m enable autosuggestions?" Y; then
+          echo -e "\e[32m[ oh-my-zsh ]\e[m downloading plugin"
+          git clone git://github.com/zsh-users/zsh-autosuggestions.git "$HOME/.oh-my-zsh/plugins/zsh-autosuggestions" --quiet > /dev/null
+          sed -i '4s/.*/git/git zsh-autosuggestions' "$HOME/.zshrc"
+    fi
+
     chsh -s zsh
 fi
 
@@ -142,6 +157,23 @@ if [ $python ];then
   curl -fsLo "$HOME/.pythonrc" https://cdn.rawgit.com/onlurking/termux/master/.termux/.pythonrc
 fi
 
+if [ $nodejs ];then
+  if ! [ -x "$(command -v node)" ]; then
+    echo -e "\e[32m[ nodejs ]\e[m not found, installing"
+    apt-get install -y nodejs-current > /dev/null 2>&1
+  fi
+  echo -e "\e[32m[ npm ]\e[m configuring prefix"
+  mkdir -p $HOME/.npm-packages
+  npm set prefix $HOME/.npm-packages
+
+  if ask "\e[32m[ yarn ]\e[m install yarn? (recommended)" Y; then
+    echo -e "\e[32m[ yarn ]\e[m downloading nightly"
+    curl -o- -L https://yarnpkg.com/install.sh > /dev/null 2>&1 | bash -s -- --nightly > /dev/null 2>&1
+    echo -e "\e[32m[ yarn ]\e[m configuring prefix"
+    $HOME/.yarn/bin/yarn config set prefix $HOME/.npm-packages
+  fi
+fi
+
 if [ $postgres ];then
   if ! [ -x "$(command -v pg_ctl)" ]; then
     echo -e "\e[32m[ postgres ]\e[m not found, installing"
@@ -163,8 +195,6 @@ if [ $postgres ];then
       echo -e "\e[32m[ pgcli ]\e[m creating configs"
       createdb $(whoami)
     fi
-
-    
   fi
 fi
 
