@@ -168,8 +168,12 @@ if [ $nodejs ];then
   npm set prefix "$HOME/.npm-packages"
 
   if ask "\\e[32m[ yarn ]\\e[m install yarn? (recommended)" Y; then
+    if [ -d "$HOME/.yarn" ]; then
+      echo -e "\\e[32m[ yarn ]\\e[m removing existing yarn"
+      rm -rf "$HOME/.yarn"
+    fi
     echo -e "\\e[32m[ yarn ]\\e[m downloading nightly"
-    curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --nightly
+    curl -s -o- -L https://yarnpkg.com/install.sh > /dev/null 2>&1 | bash -s -- --nightly > /dev/null 2>&1
     echo -e "\\e[32m[ yarn ]\\e[m configuring prefix"
     "$HOME/.yarn/bin/yarn" config set prefix "$HOME/.npm-packages"
   fi
