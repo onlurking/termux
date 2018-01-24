@@ -82,7 +82,7 @@ if ! [ -x "$(command -v git)" ]; then
 fi
 
 if [ ! -d "$HOME/.local/bin" ]; then
-  mkdir -p $HOME/.local/bin
+  mkdir -p "$HOME/.local/bin"
   echo 'export PATH=$PATH:$HOME/.local/bin' >> "$HOME/.profile"
 fi
 
@@ -129,6 +129,7 @@ if [ $zsh ];then
           echo -e "\e[32m[ oh-my-zsh ]\e[m downloading plugin"
           git clone git://github.com/zsh-users/zsh-autosuggestions.git "$HOME/.oh-my-zsh/plugins/zsh-autosuggestions" --quiet > /dev/null
           sed -i '4s/.*/git/git zsh-autosuggestions' "$HOME/.zshrc"
+      fi
     fi
 
     chsh -s zsh
