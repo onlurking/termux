@@ -128,7 +128,7 @@ if [ $zsh ];then
       if ask "\\e[32m[ oh-my-zsh ]\\e[m enable autosuggestions?" Y; then
           echo -e "\\e[32m[ oh-my-zsh ]\\e[m downloading plugin"
           git clone git://github.com/zsh-users/zsh-autosuggestions.git "$HOME/.oh-my-zsh/plugins/zsh-autosuggestions" --quiet > /dev/null
-          sed -i '4s/.*/git/git zsh-autosuggestions' "$HOME/.zshrc"
+          sed -i '4s/git/git zsh-autosuggestions/' "$HOME/.zshrc"
       fi
     fi
 
