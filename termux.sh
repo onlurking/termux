@@ -14,6 +14,8 @@ while [[ $# -gt 0 ]]; do
             tmux=true;;
         -r| --ruby)
             ruby=true;;
+        --php)
+            php=true;;
         -pg| --postgres)
             postgres=true;;
         -z| --zsh)
@@ -135,6 +137,11 @@ if [ $zsh ];then
     chsh -s zsh
 fi
 
+if [ $php ];then
+  echo -e "\\e[32m[ php ]\\e[m not found, installing"
+  apt-get install -y nginx php php-fpm > /dev/null 2>&1
+fi
+
 if [ $elixir ];then
   if ! [ -x "$(command -v erl)" ]; then
     echo -e "\\e[32m[ erlang ]\\e[m not found, installing"
@@ -175,7 +182,7 @@ if [ $nodejs ];then
     echo -e "\\e[32m[ yarn ]\\e[m downloading nightly"
     curl -s -o- -L https://yarnpkg.com/install.sh > /dev/null 2>&1 | bash -s -- --nightly > /dev/null 2>&1
     echo -e "\\e[32m[ yarn ]\\e[m configuring prefix"
-    "$HOME/.yarn/bin/yarn" config set prefix "$HOME/.npm-packages"
+    $HOME/.yarn/bin/yarn config set prefix "$HOME/.npm-packages"
   fi
 fi
 
