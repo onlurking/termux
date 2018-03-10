@@ -38,4 +38,4 @@ Piping commands from internet to shell is considered bad practice, <br>and there
 - [The Truth About Curl and Installing Software Securely on Linux](https://medium.com/@esotericmeans/the-truth-about-curl-and-installing-software-securely-on-linux-63cd12e7befd)
 
 <br>but I did this anyway because of the convenience factor (there is no way to be more straightforward than this),<br>
-please, feel free to review the [installer code](https://git.io/vHIKx) and open an Issue.
+please, feel free to review the [installer code](https://git.io/termux) and open an Issue.
