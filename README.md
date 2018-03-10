@@ -25,6 +25,7 @@ curl -fsSL https://git.io/termux | bash -s -- --zsh --python --neovim
 **-js** or **--nodejs** setups nodejs (optional yarn install)<br>
 **-t** or **--tmux** setups tmux<br>
 **-n** or **--neovim** setups neovim<br>
+**--php** setups php<br>
 **-z** or **--zsh** setups zsh (optional syntax-highlight and auto-sugestions)<br>
 **-e** or **--elixir** setup a erlang, and elixir installation<br>
 
