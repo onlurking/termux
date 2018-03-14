@@ -67,7 +67,7 @@ function install_node() {
 		curl -s -o- -L https://yarnpkg.com/install.sh | bash -s -- --nightly >/dev/null 2>&1
 		export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 		echo -e "\\e[32m[ yarn ]\\e[m configuring prefix"
-		$HOME/.yarn/bin/yarn config set prefix "$HOME/.npm-packages"
+		$HOME/.yarn/bin/yarn config set prefix "$HOME/.npm-packages" >/dev/null 2>&1
 	fi
 }
 
