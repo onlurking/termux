@@ -47,7 +47,6 @@ function install_elixir() {
 	termux-fix-shebang elixir elixirc iex mix
 	echo 'export PATH="$PATH:$HOME/.elixir/bin"' >>"$HOME/.profile"
 	cd "$HOME" || exit
-	echo -e "\\e[32m[ elixir ]\\e[m restart termux"
 	if ask "\\e[32m[ yarn ]\\e[m install rebar? (recommended)" Y; then
     curl -fsLo "$HOME/.local/bin/rebar" https://github.com/rebar/rebar/releases/download/2.6.2/rebar
     curl -fsLo "$HOME/.local/bin/rebar3" https://github.com/erlang/rebar3/releases/download/3.5.0/rebar3
@@ -183,6 +182,14 @@ function install_php() {
 	apt-get install -y nginx php php-fpm >/dev/null 2>&1
 }
 
+function install_golang() {
+  echo -e "\\e[32m[ go ]\\e[m not found, installing"
+	apt-get install -y golang >/dev/null 2>&1
+  mkdir $HOME/.go
+  echo 'export GOPATH="$PATH:$HOME/.go"' >> $HOME/.profile
+  echo 'export PATH="$PATH:$HOME/.go/bin"' >> $HOME/.profile
+}
+
 function ask() {
 	# https://djm.me/ask
 	local prompt default reply
@@ -246,6 +253,9 @@ while [[ $# -gt 0 ]]; do
 	-e | --elixir)
 		elixir=true
 		;;
+  -g | --go | --golang)
+		golang=true
+		;;
 	-p | --python)
 		python=true
 		;;
@@ -306,6 +316,10 @@ if [ $ruby ]; then
 	install_ruby
 fi
 
+if [ $golang ]; then
+  install_golang
+fi
+
 if [ $php ]; then
 	install_php
 fi
@@ -324,6 +338,8 @@ if [ $elixir ]; then
 		fi
 	fi
 fi
+
+source $HOME/.profile
 
 finish
 
