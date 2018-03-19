@@ -35,6 +35,7 @@ function install_zsh() {
 	fi
 
 	chsh -s zsh
+
 }
 
 function install_elixir() {
@@ -79,7 +80,7 @@ function install_requirements() {
 
 	if [ ! -d "$HOME/.local/bin" ]; then
 		mkdir -p "$HOME/.local/bin"
-		echo 'export PATH=$PATH:$HOME/.local/bin' >>"$HOME/.profile"
+		echo 'export PATH="$PATH:$HOME/.local/bin"' >> $HOME/.profile
 	fi
 
 	if [ -d "$HOME/.termux" ]; then
