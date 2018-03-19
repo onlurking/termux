@@ -28,6 +28,7 @@
 
 
 syntax on
+filetype plugin on
 colorscheme Tomorrow-Night-Eighties
 set expandtab
 set shiftwidth=2
@@ -62,10 +63,13 @@ Plug 'ntpeters/vim-better-whitespace'
 
 " Distraction Free
 Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
-Plug 'amix/vim-zenroom2'
 
 " Syntax Highlight
 Plug 'sheerun/vim-polyglot'
+
+Plug 'vimwiki/vimwiki'
+Plug 'suan/vim-instant-markdown'
+
 
 call plug#end()
 
@@ -89,3 +93,12 @@ let g:deoplete#enable_at_startup = 1
 
 " Disable python 2
 let g:loaded_python_provider = 1
+
+let g:vimwiki_list=[{'path': '~/.wiki', 'syntax': 'markdown', 'ext': '.md'}]
+
+" vimwiki with markdown support
+let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+let g:instant_markdown_slow = 1
+let g:instant_markdown_autostart = 0	" disable autostart
+map <leader>md :InstantMarkdownPreview<CR>
+
