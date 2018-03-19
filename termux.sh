@@ -48,6 +48,11 @@ function install_elixir() {
 	echo 'export PATH="$PATH:$HOME/.elixir/bin"' >>"$HOME/.profile"
 	cd "$HOME" || exit
 	echo -e "\\e[32m[ elixir ]\\e[m restart termux"
+	if ask "\\e[32m[ yarn ]\\e[m install rebar? (recommended)" Y; then
+    curl -fsLo "$HOME/.local/bin/rebar" https://github.com/rebar/rebar/releases/download/2.6.2/rebar
+    curl -fsLo "$HOME/.local/bin/rebar3" https://github.com/erlang/rebar3/releases/download/3.5.0/rebar3
+    chmod +x $HOME/.local/bin/rebar && chmod +x $HOME/.local/bin/rebar3
+  fi
 }
 
 function install_node() {
