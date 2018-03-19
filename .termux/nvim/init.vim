@@ -1,30 +1,30 @@
 "
-"              ███████████████████████████
-"              ███████▀▀▀░░░░░░░▀▀▀███████
-"              ████▀░░░░░░░░░░░░░░░░░▀████
-"              ███│░░░░░░░░░░░░░░░░░░░│███
-"              ██▌│░░░░░░░░░░░░░░░░░░░│▐██
-"              ██░└┐░░░░░░░░░░░░░░░░░┌┘░██
-"              ██░░└┐░░░░░░░░░░░░░░░┌┘░░██
-"              ██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██
-"              ██▌░│██████▌░░░▐██████│░▐██
-"              ███░│▐███▀▀░░▄░░▀▀███▌│░███
-"              ██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██
-"              ██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██
-"              ████▄─┘██▌░░░░░░░▐██└─▄████
-"              █████░░▐█─┬┬┬┬┬┬┬─█▌░░█████
-"              ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████
-"              █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
-"              ███████▄░░░░░░░░░░░▄███████
-"              ██████████▄▄▄▄▄▄▄██████████
-"              ███████████████████████████
+"          ███████████████████████████
+"          ███████▀▀▀░░░░░░░▀▀▀███████
+"          ████▀░░░░░░░░░░░░░░░░░▀████
+"          ███│░░░░░░░░░░░░░░░░░░░│███
+"          ██▌│░░░░░░░░░░░░░░░░░░░│▐██
+"          ██░└┐░░░░░░░░░░░░░░░░░┌┘░██
+"          ██░░└┐░░░░░░░░░░░░░░░┌┘░░██
+"          ██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██
+"          ██▌░│██████▌░░░▐██████│░▐██
+"          ███░│▐███▀▀░░▄░░▀▀███▌│░███
+"          ██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██
+"          ██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██
+"          ████▄─┘██▌░░░░░░░▐██└─▄████
+"          █████░░▐█─┬┬┬┬┬┬┬─█▌░░█████
+"          ████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████
+"          █████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
+"          ███████▄░░░░░░░░░░░▄███████
+"          ██████████▄▄▄▄▄▄▄██████████
+"          ███████████████████████████
 "
-"         You are about to experience a potent
-"           dosage of Vim. Watch your steps.
+"      You are about to experience a potent
+"        dosage of Vim. Watch your steps.
 "
-"     ╔══════════════════════════════════════════╗
-"     ║             HERE BE VIMPIRES             ║
-"     ╚══════════════════════════════════════════╝
+"  ╔══════════════════════════════════════════╗
+"  ║             HERE BE VIMPIRES             ║
+"  ╚══════════════════════════════════════════╝
 
 
 syntax on
@@ -68,8 +68,10 @@ Plug 'junegunn/goyo.vim', { 'on': 'Goyo' }
 Plug 'sheerun/vim-polyglot'
 
 Plug 'vimwiki/vimwiki'
-Plug 'suan/vim-instant-markdown'
 
+if executable('node')
+  Plug 'suan/vim-instant-markdown', { 'dir': '$HOME', 'do': 'npm -g install instant-markdown-d' }
+endif
 
 call plug#end()
 
@@ -98,7 +100,10 @@ let g:vimwiki_list=[{'path': '~/.wiki', 'syntax': 'markdown', 'ext': '.md'}]
 
 " vimwiki with markdown support
 let g:vimwiki_ext2syntax = {'.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-let g:instant_markdown_slow = 1
-let g:instant_markdown_autostart = 0	" disable autostart
-map <leader>md :InstantMarkdownPreview<CR>
+
+if executable('node')
+  let g:instant_markdown_slow = 1
+  let g:instant_markdown_autostart = 0
+  map <leader>md :InstantMarkdownPreview<CR>
+endif
 
