@@ -93,6 +93,9 @@ function install_requirements() {
 			curl -fsLo "$HOME/.termux/colors.properties" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/colors.properties
 			curl -fsLo "$HOME/.termux/font.ttf" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/font.ttf
 		fi
+	else
+		curl -fsLo "$HOME/.termux/colors.properties" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/colors.properties
+		curl -fsLo "$HOME/.termux/font.ttf" --create-dirs https://cdn.rawgit.com/onlurking/termux/master/.termux/font.ttf
 	fi
 }
 
