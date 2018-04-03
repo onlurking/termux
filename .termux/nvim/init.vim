@@ -70,7 +70,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'vimwiki/vimwiki'
 
 if executable('node')
-  Plug 'suan/vim-instant-markdown', { 'dir': '$HOME', 'do': 'npm -g install instant-markdown-d' }
+  Plug 'suan/vim-instant-markdown', {'do': 'npm -g install instant-markdown-d' }
 endif
 
 call plug#end()
