@@ -126,12 +126,12 @@ function install_postgres() {
 function install_neovim() {
 	if ! [ -x "$(command -v nvim)" ]; then
 		echo -e "\\e[32m[ neovim ]\\e[m not found, installing"
-		apt-get install -y neovim >/dev/null 2>&1
+		apt-get install -y neovim>/dev/null 2>&1
 	fi
 	if ask "\\e[32m[ termux ]\\e[m install python module? (highly recommended)" Y; then
 		if ! [ -x "$(command -v clang)" ]; then
 			echo -e "\\e[32m[ neovim ]\\e[m clang not found, installing"
-			apt-get install -y clang >/dev/null 2>&1
+			apt-get install -y clang libcrypt-dev>/dev/null 2>&1
 		fi
 		if ! [ -x "$(command -v python)" ]; then
 			echo -e "\\e[32m[ neovim ]\\e[m python not found, installing"
@@ -146,7 +146,7 @@ function install_neovim() {
 		fi
 		if ! [ -x "$(command -v ruby)" ]; then
 			echo -e "\\e[32m[ neovim ]\\e[m ruby not found, installing"
-			apt-get install -y ruby ruby-dev >/dev/null 2>&1
+			apt-get install -y ruby ruby-dev make>/dev/null 2>&1
 		fi
 		gem install neovim >/dev/null 2>&1
 	fi
