@@ -41,7 +41,7 @@ function install_zsh() {
 function install_elixir() {
 	mkdir "$HOME/.elixir" && cd "$HOME/.elixir" || exit
 	echo -e "\\e[32m[ elixir ]\\e[m downloading"
-	curl -L https://github.com/elixir-lang/elixir/releases/download/v1.6.4/Precompiled.zip 2>/dev/null >Precompiled.zip
+	curl -L https://github.com/elixir-lang/elixir/releases/download/v1.6.5/Precompiled.zip 2>/dev/null >Precompiled.zip
 	unzip -qq Precompiled.zip 1>/dev/null && rm Precompiled.zip && cd bin || exit
 	echo -e "\\e[32m[ elixir ]\\e[m fixing binaries"
 	termux-fix-shebang elixir elixirc iex mix
