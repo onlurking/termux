@@ -244,6 +244,10 @@ function finish() {
 		touch "$HOME/.hushlogin"
 	fi
 
+	if ! grep -q "source ~/.profile" $HOME/.bash_profile >/dev/null 2>&1; then
+		echo -e "\n# Include ~/.profile created by onlurking/termux script\nif [ -f ~/.profile ]; then\n  source ~/.profile\nfi" >> $HOME/.bash_profile
+	fi
+
 	if ask "\\e[32m[ finished ]\\e[m close termux to apply settings?" Y; then
 		pkill termux
 	else
