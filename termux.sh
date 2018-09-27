@@ -57,7 +57,7 @@ function install_elixir() {
 function install_node() {
 	if ! [ -x "$(command -v node)" ]; then
 		echo -e "\\e[32m[ nodejs ]\\e[m not found, installing"
-		apt-get install -y nodejs-current >/dev/null 2>&1
+		apt-get install -y nodejs >/dev/null 2>&1
 	fi
 	echo -e "\\e[32m[ npm ]\\e[m configuring prefix"
 	mkdir -p "$HOME/.npm-packages"
