@@ -41,7 +41,7 @@ function install_zsh() {
 function install_elixir() {
 	mkdir "$HOME/.elixir" && cd "$HOME/.elixir" || exit
 	echo -e "\\e[32m[ elixir ]\\e[m downloading"
-	curl -L https://github.com/elixir-lang/elixir/releases/download/v1.6.5/Precompiled.zip 2>/dev/null >Precompiled.zip
+	curl -L https://github.com/elixir-lang/elixir/releases/download/v1.7.3/Precompiled.zip 2>/dev/null >Precompiled.zip
 	unzip -qq Precompiled.zip 1>/dev/null && rm Precompiled.zip && cd bin || exit
 	echo -e "\\e[32m[ elixir ]\\e[m fixing binaries"
 	termux-fix-shebang elixir elixirc iex mix
@@ -49,7 +49,7 @@ function install_elixir() {
 	cd "$HOME" || exit
 	if ask "\\e[32m[ yarn ]\\e[m install rebar? (recommended)" Y; then
     curl -fsLo "$HOME/.local/bin/rebar" https://github.com/rebar/rebar/releases/download/2.6.2/rebar
-    curl -fsLo "$HOME/.local/bin/rebar3" https://github.com/erlang/rebar3/releases/download/3.5.0/rebar3
+    curl -fsLo "$HOME/.local/bin/rebar3" https://github.com/erlang/rebar3/releases/download/3.6.2/rebar3
     chmod +x $HOME/.local/bin/rebar && chmod +x $HOME/.local/bin/rebar3
   fi
 }
