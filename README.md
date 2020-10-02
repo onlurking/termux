@@ -40,3 +40,5 @@ Piping commands from internet to shell is considered bad practice, <br>and there
 
 <br>but I did this anyway because of the convenience factor (there is no way to be more straightforward than this),<br>
 please, feel free to review the [installer code](https://git.io/termux) and open an Issue.
+
+# Thank You
